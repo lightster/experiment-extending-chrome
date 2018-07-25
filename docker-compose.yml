@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+  dev-ssl:
+    build:
+      context: .
+      dockerfile: docker/dev-ssl/Dockerfile
+    restart: "no"
+    volumes:
+      - ./data/ssl/certs:/etc/ssl/certs
+      - ./docker/dev-ssl/docker-entrypoint.sh:/docker-entrypoint.sh
+    environment:
+      - DOMAIN=m.com
+
+  buoy:
+    image: nginx:1.13.12-alpine
+    restart: always
+    volumes:
+      - ./data/ssl/certs:/etc/ssl/certs
+      - ./docker/web-proxy/nginx/conf.d:/etc/nginx/conf.d
+      - .:/var/www/html
+    ports:
+      - 443
+    networks:
+      default:
+      buoy:
+        aliases:
+          - "${BUOY_HOST:-chrome}"
+
+networks:
+  buoy:
+    external:
+      name: buoy
