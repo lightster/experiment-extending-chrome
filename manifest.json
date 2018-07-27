@@ -1,22 +1,22 @@
 {
   "manifest_version": 2,
   "name": "Experiment Extending Chrome",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzslIeUWdhSFbdPUxgmUKlb+t/r++8aJ3pojcb3Tub/cqfm7BUR71NRMWkZAXQu1V6VHyk9leEtR74L4TsExEy9pb18jK7wGQgHh5gDGjQIyvIN08XCM30wE/t/DJyHFyBgsVBISDlbhY9As9G6fuU4G07+/HKyjDL0EnsyoP7nEvMk93VFaSF67pKjoE2XvdqkJ0/yrwchkjJu5SiJ1gMmQyAqOCxt+TA5qUSH5zPJjBIfuKvMRaemOPWoc5lTUH9+0pJDmtfig6FDOHZ7nRMzQ3Lypf2M9/xTuocvIr11yQ2VqKgk1rXk0ifo82SagBJITvLkPANcVuAP994ntjEQIDAQAB",
   "version": "0.1",
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "jquery-3.3.1.min.js",
-        "content.js"
-      ]
-    }
-  ],
   "browser_action": {
     "default_icon": "icon.png"
   },
   "background": {
-    "scripts": ["background.js"]
-  }
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "oauth2": {
+    "client_id": "668688446918-63rqf59jl33o6kra9bn5m1q59i901fmi.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/plus.login"]
+  },
+  "permissions": [
+    "identity"
+  ]
 }
